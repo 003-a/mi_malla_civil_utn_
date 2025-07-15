@@ -1,50 +1,47 @@
 import { materias } from './data.js';
 
 const contenedor = document.getElementById('malla');
-
 const estado = {};
 
 function actualizarVista() {
   contenedor.innerHTML = '';
+  
+  const niveles = [...new Set(materias.map(m => m.nivel))].sort();
 
-  materias.forEach(m => {
-    const puedeCursar = m.correlativas.every(cor => estado[cor]);
-    const aprobada = estado[m.codigo] === true;
+  niveles.forEach(nivel => {
+    const col = document.createElement('div');
+    col.className = 'nivel-col';
+    col.innerHTML = `<h2>${nivel}° Año</h2>`;
+    
+    materias
+      .filter(m => m.nivel === nivel)
+      .forEach(m => {
+        const puedeCursar = m.correlativas.every(cor => estado[cor]);
+        const aprobada = estado[m.codigo] === true;
+        const card = document.createElement('div');
+        card.className = 'materia';
+        if (aprobada) card.classList.add('aprobada');
+        else if (!puedeCursar) card.style.opacity = '0.5';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = aprobada;
+        checkbox.disabled = !puedeCursar;
+        checkbox.addEventListener('change', () => {
+          estado[m.codigo] = checkbox.checked;
+          localStorage.setItem('estadoMaterias', JSON.stringify(estado));
+          actualizarVista();
+        });
 
-    const div = document.createElement('div');
-    div.className = 'materia';
+        const label = document.createElement('label');
+        label.textContent = `${m.codigo} - ${m.nombre}`;
 
-    if (aprobada) {
-      div.classList.add('aprobada');
-    } else if (!puedeCursar) {
-      div.style.opacity = '0.5';
-    }
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.id = m.codigo;
-    checkbox.checked = aprobada;
-    checkbox.disabled = !puedeCursar;
-    checkbox.addEventListener('change', () => {
-      estado[m.codigo] = checkbox.checked;
-      localStorage.setItem('estadoMaterias', JSON.stringify(estado));
-      actualizarVista();
-    });
-
-    const label = document.createElement('label');
-    label.htmlFor = m.codigo;
-    label.textContent = `${m.codigo} - ${m.nombre}`;
-
-    div.appendChild(checkbox);
-    div.appendChild(label);
-    contenedor.appendChild(div);
+        card.append(checkbox, label);
+        col.appendChild(card);
+      });
+    contenedor.appendChild(col);
   });
 }
 
-// Cargar progreso guardado
-const guardado = localStorage.getItem('estadoMaterias');
-if (guardado) {
-  Object.assign(estado, JSON.parse(guardado));
-}
-
+Object.assign(estado, JSON.parse(localStorage.getItem('estadoMaterias') || '{}'));
 actualizarVista();
