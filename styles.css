@@ -1,7 +1,6 @@
 body {
-  background: linear-gradient(135deg, #f0f4ff, #dfe9f5);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  background: linear-gradient(135deg, #fdf9f7, #f0f4ff);
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -9,46 +8,57 @@ body {
 }
 
 .container {
+  max-width: 900px;
   width: 100%;
-  max-width: 800px;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2em;
-  color: #2a3d66;
+  color: #3b4a76;
 }
 
 .malla-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.nivel-col {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.nivel-col h2 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #4a5878;
 }
 
 .materia {
   background: #fff;
-  border-radius: 10px;
-  padding: 12px 16px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+  margin: 6px 0;
+  padding: 8px;
   display: flex;
   align-items: center;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .materia:hover {
-  transform: translateY(-4px);
-  box-shadow: 0px 6px 12px rgba(0,0,0,.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .materia.aprobada {
-  background: #e0f0e9;
+  background: #e1f5eb;
+  color: #4a4a4a;
   text-decoration: line-through;
-  color: #666;
 }
 
 .materia input[type="checkbox"] {
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
 }
