@@ -1,64 +1,77 @@
 body {
-  background: linear-gradient(135deg, #fdf9f7, #f0f4ff);
+  background: linear-gradient(135deg, #fdf9f7, #eef4fc);
   font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
   margin: 0;
   display: flex;
   justify-content: center;
-  padding: 20px;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1100px;
   width: 100%;
 }
 
 h1 {
   text-align: center;
-  color: #3b4a76;
+  color: #2e3f70;
+  margin-bottom: 20px;
 }
 
 .malla-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 14px;
+  gap: 16px;
 }
 
 .nivel-col {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
 .nivel-col h2 {
-  font-size: 1.2em;
-  margin-bottom: 8px;
-  color: #4a5878;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #3e4e75;
 }
 
 .materia {
   background: #fff;
   border-radius: 8px;
+  padding: 10px;
   margin: 6px 0;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s;
 }
 
 .materia:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .materia.aprobada {
-  background: #e1f5eb;
-  color: #4a4a4a;
+  background-color: #e0f8eb;
   text-decoration: line-through;
 }
 
-.materia input[type="checkbox"] {
-  margin-right: 8px;
-  width: 16px;
-  height: 16px;
+.materia label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.estado-select, .nota-input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.nota-input {
+  margin-top: 6px;
 }
