@@ -13,7 +13,6 @@ function actualizarVista() {
 
     const div = document.createElement('div');
     div.className = 'materia';
-    div.style.margin = '8px 0';
 
     if (aprobada) {
       div.classList.add('aprobada');
@@ -42,7 +41,7 @@ function actualizarVista() {
   });
 }
 
-// Cargar estado guardado en localStorage
+// Cargar progreso guardado
 const guardado = localStorage.getItem('estadoMaterias');
 if (guardado) {
   Object.assign(estado, JSON.parse(guardado));
